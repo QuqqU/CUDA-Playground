@@ -1,0 +1,9 @@
+# Defines the llvm style for automatic reformatting.
+# http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+BasedOnStyle: llvm
+IndentWidth: 4
+TabWidth: 4
+
+# This defaults to 'Auto'.
+Standard: c++20

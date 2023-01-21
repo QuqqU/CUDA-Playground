@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.11)
+
+project(
+    my_program
+    VERSION 0.1
+    DESCRIPTION "Example Template"
+    LANGUAGES CXX)
+
+option(BUILD_TEST "Build: Test Code" OFF)
+
+set(PROJECT_LIBRARY _${PROJECT_NAME})
+set(PROJECT_EXECUTABLE ${PROJECT_NAME})
+set(PROJECT_TEST test_${PROJECT_NAME})
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+add_subdirectory(lib)
+add_subdirectory(app)
+
+if(BUILD_TEST)
+    add_subdirectory(test)
+endif(BUILD_TEST)
+
+add_custom_target(run
+    COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_EXECUTABLE}
+    DEPENDS ${PROJECT_EXECUTABLE}
+    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
+)
