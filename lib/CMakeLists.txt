@@ -1,10 +1,10 @@
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
-    ${CMAKE_CURRENT_SOURCE_DIR}/*.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${SRC_FILES})
 target_include_directories(${PROJECT_LIBRARY} PUBLIC ${CMAKE_SOURCE_DIR}/include)
-target_compile_options(${PROJECT_LIBRARY} PRIVATE -Wall -Werror)
+# target_compile_options(${PROJECT_LIBRARY} PRIVATE -Wall -Werror)
 target_compile_features(${PROJECT_LIBRARY} PRIVATE cxx_std_17)
 
 include(FetchContent)
@@ -17,3 +17,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Fmt)
 target_link_libraries(${PROJECT_LIBRARY} PRIVATE fmt)
+
+find_package(CUDA 11.4 REQUIRED)
+target_link_libraries(${PROJECT_LIBRARY} PUBLIC ${CUDA_LIBRARIES})

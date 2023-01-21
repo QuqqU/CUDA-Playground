@@ -3,7 +3,12 @@
         {
             "name": "CMake",
             "compileCommands": "${config:cmake.buildDirectory}/compile_commands.json",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/build/CMakeFiles/3.25.0/CompilerIdCUDA"
+            ]
         }
     ],
     "version": 4
